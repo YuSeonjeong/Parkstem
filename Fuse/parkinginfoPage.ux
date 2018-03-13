@@ -1,0 +1,117 @@
+<Page ux:Class="parkinginfoPage" >
+	<Router ux:Dependency="router" />
+	<JavaScript File="parkinginfoPage.js" />
+  <JavaScript File="main.js" />
+
+  <DockPanel>
+    <Panel Dock="Top" Color="#25272F" Height="8%">
+     <!-- 상단 하늘색 탭 -->
+     <BoldText Value="PARKING LOT INFO" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+     <Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0"/>
+   </Panel>
+
+   <!--하단 바(위에 정의된 이미지가 위에 위치함)-->
+   <Image File="assets/reservation1.png" Alignment="BottomCenter"  Margin="20,0,20,10" Clicked="{reservationPage}"/> 
+
+   <ScrollView Padding="20,30,20,20">
+     <StackPanel>
+
+       <!--이름,주소-->
+       <Grid Columns="1*, auto,auto,auto" >
+        <StackPanel Column="0" Padding="0,6,0,0">
+          <KrBoldText Value="{parkingdata.name}" Column="0" FontSize="15" Color="#25272F"/>
+          <KrBaseText Value="{parkingdata.loc}" Column="0" Row="1" FontSize="11"  Color="#25272F" Margin="0,3,0,0"/>
+        </StackPanel>
+
+        <Image File="assets/locate_2.png" Height="45" Column="1"  Margin="0,0,5,0" />
+        <Image File="assets/call_2.png"  Height="45" Column="2"  Margin="0,0,5,0"/>
+        <Image ux:Name="fav" File="assets/favorite_2.png"  Height="45" Column="3" Clicked="{favCliked}"/>
+          <Image ux:Name="fav2" File="assets/favorite.png"  Height="45" Column="3" Visibility="Hidden"/>
+  <!--        <Clicked>
+          <Change fav.Color="Black" />
+          <Callback Handler="{favCliked}" />
+        </Clicked> -->
+      <WhileTrue Value="{faclicked}">
+        <Change fav.Visibility="Hidden" />
+        <Change fav2.Visibility="Visible" />
+      </WhileTrue>
+    </Grid>
+
+    <Rectangle Margin="0,10,0,15" Height="1" Opacity="0.8"  Color="#292930"/>
+
+    <!--사진-->
+    <ScrollView AllowedScrollDirections="Horizontal" >
+      <StackPanel Orientation="Horizontal">
+       <Image File="assets/parkinginfo_photo2.png"  Height="150"  Margin="0,0,10,0" />
+       <Image File="assets/parkinginfo_photo1.png"  Height="150"  />
+     </StackPanel>
+   </ScrollView>
+
+   <Rectangle Margin="0,15,0,10" Height="1" Opacity="0.8"  Color="#292930"/>
+
+   <!--요금정보-->
+   <Grid Columns="auto,1*" Padding="0,0,0,5">
+    <KrBoldText Value="요금정보" FontSize="15" Color="#292930"/>
+    <KrBoldText Value="(원)" FontSize="10" Color="#292930" Margin="0,4,0,0"/>
+  </Grid>
+  <Image File="assets/fee_info.png">
+    <StackPanel Margin="180,10,0,0">
+      <NumBoldText Value="{parkingdata.fee_20m}" Padding="0,0,0,14" FontSize="15"  Color="#292930"/>
+      <NumBoldText Value="{parkingdata.fee_h}" Padding="0,0,0,14" FontSize="15"  Color="#292930"/>
+      <NumBoldText Value="{parkingdata.fee_d}" Padding="0,0,0,14" FontSize="15"  Color="#292930"/>
+      <NumBoldText Value="{parkingdata.fee_m}" FontSize="15"  Color="#292930"/>
+    </StackPanel>
+  </Image>
+
+  <Rectangle Margin="0,15,0,10" Height="1" Opacity="0.8"  Color="#292930"/>
+
+  <!--운영시간-->
+  <KrBoldText Value="운영시간" FontSize="15" Color="#292930"  Padding="0,0,0,5"/>
+
+  <Image File="assets/time_info.png">
+   <StackPanel Margin="180,10,0,0">
+    <NumBoldText Value="{parkingdata.time_w}" Padding="0,0,0,14" FontSize="15"  Color="#292930" />
+    <NumBoldText Value="{parkingdata.time_s}" Padding="0,0,0,14" FontSize="15"  Color="#292930"/>
+    <NumBoldText Value="{parkingdata.time_h}" FontSize="15"  Color="#292930"/>
+  </StackPanel>
+</Image>
+
+
+<Rectangle Margin="0,15,0,10" Height="1" Opacity="0.8"  Color="#292930"/>
+
+
+<!--주차장 형태-->
+<KrBoldText Value="주차장형태" FontSize="15" Color="#292930"  Padding="0,0,0,5"/>
+
+<Image File="assets/type_info.png">
+
+ <Image ux:Name="type_a" File="assets/typeA.png" Color="Black"/>
+ <Image ux:Name="type_b" File="assets/typeB.png" Color="Black"/>
+ <Image ux:Name="type_c" File="assets/typeC.png" Color="Black"/>
+ <Image ux:Name="type_d" File="assets/typeD.png" Color="Black"/>
+</Image>
+
+<WhileTrue Value="{type_a}">
+ <Change type_a.Color="#F2C851" />
+</WhileTrue>
+<WhileTrue Value="{type_b}">
+ <Change type_b.Color="#F2C851" />
+</WhileTrue>
+<WhileTrue Value="{type_c}">
+ <Change type_c.Color="#F2C851" />
+</WhileTrue>
+<WhileTrue Value="{type_d}">
+ <Change type_d.Color="#F2C851" />
+</WhileTrue>
+
+
+<Rectangle Margin="0,15,0,10" Height="1" Opacity="0.8"  Color="#292930"/>
+
+<KrBoldText Value="이용안내 및 유의사항" FontSize="15" Color="#292930"  Padding="0,0,0,5"/>
+<KrBaseText Value="{parkingdata.notice}" FontSize="12" Height="50"/>
+
+
+</StackPanel>
+</ScrollView>
+</DockPanel>
+</Page>

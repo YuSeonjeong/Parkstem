@@ -1,0 +1,172 @@
+<Page ux:Class="reservationPageTwo" >
+	<Router ux:Dependency="router" />
+	<JavaScript File="reservationPage.js" />
+  <JavaScript File="main.js"/>
+  <JavaScript>
+  var Observable = require("FuseJS/Observable");
+
+  var values = Observable();
+  var values1 = Observable();
+
+
+  function zz(){
+    console.log(values.value);
+  }
+
+
+
+  var today = new Date();
+  var starttime = Observable();
+  var endtime = Observable();
+
+  starttime.add(today.getHours() + ':' + today.getMinutes());
+  endtime.add((today.getHours()+1) + ':' + today.getMinutes());
+    // 오늘 날짜와 내일 날짜를 추가하는 부분입니다. '2017-3-1'과 같은 형태로 직접 넣어도 됩니다.
+
+
+
+    module.exports = {
+      values: values,
+      values1:values1,
+      starttime:starttime,endtime:endtime
+    };
+    </JavaScript>
+
+    <Panel ux:Class="boxItem">
+     <string ux:Property="Label1"/>
+     <Selectable Value="{ReadProperty this.Label1}"/>
+     <WhileSelected>
+      <Change box1.Visibility="Hidden"/>
+      <Change box2.Visibility="Visible"/>
+
+    </WhileSelected>
+    <Tapped>
+      <ToggleSelection />
+    </Tapped>
+    <Panel ux:Name="box1">
+      <Image File="assets/box_icon2.png" ux:Name="Nonbox" Height="55"  Padding="3,0,3,0">
+        <KrBaseText Value="{nn}" FontSize="9" Alignment="TopCenter" Margin="0,10,0,0"/>
+        <NumBoldText Value="{mm}" Alignment="BottomCenter" Padding="0,0,0,7" FontSize="20"/>
+      </Image>
+    </Panel>
+    <Panel ux:Name="box2" Visibility="Hidden">
+      <Image File="assets/box_icon.png" ux:Name="Nonbox2" Height="55"  Padding="3,0,3,0">
+        <KrBaseText Value="{nn}" FontSize="9" Alignment="TopCenter" Margin="0,10,0,0"/>
+        <NumBoldText Value="{mm}" Alignment="BottomCenter" Padding="0,0,0,7" FontSize="20"/>
+      </Image>
+    </Panel>
+  </Panel>
+
+  <Panel ux:Class="boxItem2">
+   <string ux:Property="Label2"/>
+   <Selectable Value="{ReadProperty this.Label2}"/>
+
+   <WhileSelected>
+      <Change box3.Visibility="Hidden"/>
+      <Change box4.Visibility="Visible"/>
+
+  </WhileSelected>
+  <Tapped>
+    <ToggleSelection />
+  </Tapped>
+  <Panel ux:Name="box3">
+    <Image ux:Name="Nonbox3" File="assets/box_icon2.png"  Height="55" Padding="3,0,3,0">
+      <KrBaseText Value="{n}" FontSize="12" Alignment="Center"/>
+    </Image>
+  </Panel>
+  <Panel ux:Name="box4" Visibility="Hidden">
+    <Image ux:Name="Nonbox4" File="assets/box_icon.png"  Height="55" Padding="3,0,3,0">
+      <KrBaseText Value="{n}" FontSize="12" Alignment="Center"/>
+    </Image>
+  </Panel>
+</Panel>
+
+
+
+<DockPanel Layer="Background">
+  <Panel Dock="Top" Color="#25272F" Height="8%">
+   <!-- 상단 하늘색 탭 -->
+   <BoldText Value="RESERVATION" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+   <Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{reservationPage}" Height="30%" Margin="22,0,0,0"/>
+ </Panel>
+ <Image File="assets/cancel_mini.png" Alignment="BottomLeft" Margin="20,0,10,10" Clicked="{main}" Height="45" />
+ <Image File="assets/next_mini.png" Alignment="BottomRight" Margin="10,0,20,10" Clicked="{buyPage}" Height="45"/>
+
+ <ScrollView Padding="20,30,20,20">
+   <StackPanel>
+    <Grid Columns="auto, 1*" Margin="0,0,0,10">
+      <KrBoldText Value="건양점 " Column="0" FontSize="15" Color="#25272F"/>
+      <KrBaseText Value="  (충남 논산 대학로 123)" FontSize="11"  Color="#25272F" Margin="0,3,0,0"/>
+    </Grid>
+
+    <KrBoldText Value="2017년 12월 20일" Column="0" FontSize="15" Color="#25272F" Margin="0,0,0,10"/>
+    <Grid Columns="auto,auto, 1*" Margin="0,0,0,10" >
+      <TextInput Value="{starttime}" PlaceholderText="10" PlaceholderColor="#292930" FontSize="17" Alignment="Center" Font="NumBoldFont" Margin="0,0,10,0" TextColor="#292930"/>
+      <BaseText Value="~" Color="#292930" Alignment="Center" FontSize="17" Font="NumBoldFont" Margin="0,0,10,0"/>
+      <TextInput Value="{endtime}" PlaceholderText="10" PlaceholderColor="#292930" FontSize="17" Font="NumBoldFont" Margin="0,0,10,0" TextColor="#292930"/>
+    </Grid>
+    <KrBaseText Value="앞서  결정한 승차권 정보를 확인하시고 다음 과정을 진행해주시기 바랍니다. 결제하지 않으면 예약이 취소됩니다." Column="0" FontSize="9" Color="#25272F" TextWrapping="Wrap"/>
+    <Rectangle Margin="0,15,0,15" Height="1" Opacity="0.8"  Color="#292930"/>
+    <!--실시간 주차구역-->
+    <Grid Columns="1*, auto,auto,auto">
+      <StackPanel Column="0" Padding="0,6,0,0">
+       <KrBoldText Value="실시간 주차구역" Column="0" FontSize="14" Color="#25272F"/>
+       <KrBaseText Value="{parkingdata.hour} 기준" Column="0" Row="1" FontSize="10"  Color="#25272F" Margin="0,5,0,0"/>
+     </StackPanel>
+
+     <Each Items="{tttt}">
+       <Selection Values="{values}" MaxCount="1" MinCount="1" />
+       <boxItem Label1="{nn}"/>
+     </Each>
+   </Grid>
+
+   <!-- 주차위치 -->
+   <Rectangle Margin="0,15,0,15" Height="1" Opacity="0.8"  Color="#292930"/>
+   <Grid Columns="1*, auto,auto">
+    <StackPanel Column="0" Padding="0,6,0,0">
+     <KrBoldText Value="주차위치" Column="0" FontSize="14" Color="#25272F"/>
+     <KrBaseText Value="지하 1층 B-3구역" Column="0" Row="1" FontSize="10"  Color="#25272F" Margin="0,5,0,0"/>
+   </StackPanel>
+
+   <Each Items="{tt}">
+    <Selection Values="{values1}" MaxCount="1" MinCount="1" />
+    <boxItem2 Label2="{n}"/>
+  </Each>
+</Grid>
+<Image File="assets/parkMap.png" Margin="0,20,0,0">
+  <Image ux:Name="map" File="assets/map_non.png" Height="43" Margin="0,0,2,49" Opacity="1">
+    <BaseText  Value="B-3" Color="#E6E7E8" Margin="154,15,0,0" FontSize="14"/>
+    <Clicked>
+      <Set map.Opacity="0"/>
+    </Clicked>
+  </Image>
+</Image>
+<Rectangle Margin="0,15,0,15" Height="1" Opacity="0.8"  Color="#292930"/>
+
+<!-- My car -->
+<Grid Columns="1*, auto,auto,auto">
+  <StackPanel Column="0" Padding="0,6,0,0">
+   <KrBoldText Value="MY CAR" Column="0" FontSize="14" Color="#25272F"/>
+   <KrBaseText Value="12가3456" Column="0" Row="1" FontSize="10"  Color="#25272F" Margin="0,5,0,0"/>
+ </StackPanel>
+ <Image File="assets/left.png"  Height="15" Margin="0,0,10,0"/>
+ <Image File="assets/car_box.png"  Height="55" Margin="0,0,2,0"/>
+ <Image File="assets/right.png"  Height="15" Margin="10,0,2,0"/>
+</Grid>
+
+<Rectangle Margin="0,15,0,15" Height="1" Opacity="0.8"  Color="#292930"/>
+
+<!-- PAY -->
+<Grid Columns="1*,auto,auto">
+  <StackPanel Column="0" Padding="0,6,0,0">
+   <KrBoldText Value="PAY" Column="0" FontSize="14" Color="#25272F"/>
+   <KrBaseText Value="잔액 3,000원" Column="0" Row="1" FontSize="10"  Color="#25272F" Margin="0,5,0,0"/>
+ </StackPanel>
+ <KrBoldText Value="총 결제 금액 " FontSize="15" Margin="0,15,0,0"/>
+ <NumBoldText Value="   1,000원" FontSize="15"  Margin="0,15,2,0"/>
+</Grid>
+</StackPanel>
+</ScrollView>
+</DockPanel>
+
+</Page>

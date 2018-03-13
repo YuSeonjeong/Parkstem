@@ -1,0 +1,97 @@
+<Page ux:Class="buyPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	<JavaScript File="buyPage.js"/>
+  <JavaScript>
+  var Observable = require("FuseJS/Observable");
+
+  var values = Observable();
+  var values1 = Observable();
+
+
+  function zz(){
+    console.log(values.value);
+  }
+
+
+
+  var today = new Date();
+  var starttime = Observable();
+  var endtime = Observable();
+
+  starttime.add(today.getHours() + ':' + today.getMinutes());
+  endtime.add((today.getHours()+1) + ':' + today.getMinutes());
+    // 오늘 날짜와 내일 날짜를 추가하는 부분입니다. '2017-3-1'과 같은 형태로 직접 넣어도 됩니다.
+
+
+
+    module.exports = {
+      values: values,
+      values1:values1,
+      starttime:starttime,endtime:endtime
+    };
+    </JavaScript>
+
+	<DockPanel Background="#25272F">
+		<Panel Dock="Top" Color="#25272F" Height="8%">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="RESERVATION" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{reservationPageTwo}" Height="30%" Margin="22,0,0,0"/>
+
+
+		</Panel>
+
+		<Rectangle Row="16" Alignment="Bottom" ux:Class="buycar" PrimaryColor="#F4CF41" SecondaryColor="#4398D4"  Margin="50,0,50,60">
+			<float4 ux:Property="PrimaryColor"/>
+			<float4 ux:Property="SecondaryColor"/>
+
+			<bool ux:Property="IsActive" />
+
+			<!--car 움직이기-->
+			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+			<SwipingAnimation Source="swipe">
+				<Move Target="handle" X="185" />
+				<Change bar.Visibility="Hidden" />
+				<Change bar2.Visibility="Visible" />
+				<Change bar2.Color="White"/>
+					<Change handle.Color="{ReadProperty SecondaryColor}" />
+
+
+			</SwipingAnimation>
+
+			<Clicked>
+				<ToggleSwipeActive Target="swipe" />
+			</Clicked>
+
+			<Grid Columns="1*,auto"> 
+				<Image Column="0" File="assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}"   Clicked="{buyOK}" X="0"/>
+				<Image Column="1" ux:Name="bar" File="assets/ok.png" Alignment="Right" Height="58" Clicked="{buyOK}"/>
+				<Image Column="1" ux:Name="bar2" File="assets/bar.png" Alignment="Right" Height="58" Color="#F4CF41"/>
+				<Image Column="0" ux:Name="forgotfail" File="assets/forgot_fail.png" Alignment="Center" Height="10"  Visibility="Hidden"/>
+			</Grid>
+		</Rectangle>
+		<buycar ux:Name= "toggle"/>
+
+		<StackPanel>
+			<Image File="assets/ticketlist.png" Margin="20,30,20,0">
+				<StackPanel>
+
+								<Grid Columns="auto,1*">
+									<KrBoldText Value="건양점" Margin="17,15,0,0"/>
+									<KrBaseText Value="(충남 논산 대학로 123)" Alignment="Left" Margin="5,16,0,0" FontSize="12"/>
+								</Grid>
+								<KrBaseText Value="2017-12-20" Margin="17,8,0,0" FontSize="10"/>
+								<Grid Columns="auto,1*"> 
+									<KrBaseText Value="{starttime} ~ {endtime}" Margin="17,8,0,0" FontSize="10" Column="0"/>
+									<KrBaseText Value="12가3456" Margin="0,8,17,0" FontSize="10" Column="1" Alignment="Right"/>
+								</Grid>
+								<Grid Columns="auto,1*" Margin="17,24,17,0"> 
+									<KrBoldText Value="일반 지하 1층 B-3구역" Column="0"/>
+									<NumBoldText Value="1,000" Column="1" Alignment="Right"/>
+								</Grid>
+							</StackPanel>
+			</Image>
+		</StackPanel>
+		<KrBaseText ux:Name="codeMessage" Value="선택한 주차권을 구입하시겠습니까?" FontSize="13" Color="White" Alignment="Center" Visibility="Visible" Margin="0,0,0,50"/>
+	</DockPanel>
+</Page>

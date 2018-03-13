@@ -1,0 +1,45 @@
+<Page ux:Class="favoritePage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	<JavaScript File="favoritePage.js"/>
+	<DockPanel>
+		<Panel Dock="Top" Color="#25272F" Height="8%">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="FAVORITE" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0"/>
+		</Panel>
+
+		<ScrollView>
+			<StackPanel>
+				<Each Items="{Fdata}" >
+					<Image File="assets/favorite1.png" Margin="20,20,20,0">
+						<StackPanel>
+							<Grid Columns="auto,1*"> 
+								<KrBoldText Value="{FName}" Margin="17,12,0,0" Column="0"/>
+								<KrBaseText Value="{Flocate}" Margin="0,17,17,0" FontSize="10" Column="1" Alignment="Right"/>
+							</Grid>
+							<StackPanel Orientation="Horizontal">
+								<Grid Rows="2" Margin="20,22,0,0" Height="50">
+									<KrBaseText Value="일반" FontSize="10" Row="0" Alignment="Center"/>
+									<NumBoldText Value="{FSeat1}" Row="1"  FontSize="22" Alignment="Center" Margin="0,10,0,0"/>
+								</Grid>
+								<Grid Rows="2" Margin="20,22,0,0" Height="50">
+									<KrBaseText Value="장애인" FontSize="10" Row="0" Alignment="Center"/>
+									<NumBoldText Value="{FSeat2}" Row="1"  FontSize="22" Alignment="Center" Margin="0,10,0,0"/>
+								</Grid>
+								<Grid Rows="2" Margin="20,22,0,0" Height="50">
+									<KrBaseText Value="여성" FontSize="10" Row="0" Alignment="Center"/>
+									<NumBoldText Value="{FSeat3}" Row="1"  FontSize="22" Alignment="Center" Margin="0,10,0,0"/>
+								</Grid>
+								<Image File="assets/locate.png" Height="45" Margin="25,18,0,0"/>
+								<Image File="assets/call.png"  Height="45" Margin="10,18,0,0"/>
+								<Image File="assets/favorite.png"  Height="45" Margin="10,18,0,0"/>
+							</StackPanel>
+						</StackPanel>
+					</Image>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+		<Image File="assets/reservation.png" Alignment="BottomCenter" Margin="20,0,20,10"/>
+	</DockPanel>
+</Page>

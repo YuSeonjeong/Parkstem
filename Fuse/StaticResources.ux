@@ -1,0 +1,17 @@
+<Panel ux:Class="StaticResources">
+	<Font ux:Global="BaseFont" File="assets/font/Yun330.ttf" />
+	<Font ux:Global="BoldFont" File="assets/font/Yun360.ttf" />
+	<Text ux:Class="BaseText" Font="BaseFont" Color="#4a4a4a" />
+	<BaseText ux:Class="BoldText" Font="BoldFont" Color="#4a4a4a" />
+
+	<Font ux:Global="KrBaseFont" File="assets/font/KoPubDotumLight.ttf" />
+	<Font ux:Global="KrBoldFont" File="assets/font/KoPubDotumBold.ttf" />
+	<Text ux:Class="KrBaseText" Font="KrBaseFont" Color="#4a4a4a" />
+	<KrBaseText ux:Class="KrBoldText" Font="KrBoldFont" Color="#4a4a4a" />
+
+	<Font ux:Global="NumBaseFont" File="assets/font/HANYGO230.ttf" />
+	<Font ux:Global="NumBoldFont" File="assets/font/HANYGO250.ttf" />
+	<Text ux:Class="NumBaseText" Font="NumBaseFont" Color="#4a4a4a" />
+	<NumBaseText ux:Class="NumBoldText" Font="NumBoldFont" Color="#4a4a4a" />
+</Panel>
+

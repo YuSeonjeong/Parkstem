@@ -1,0 +1,10 @@
+<Page ux:Class="logoutPage">
+	<Router ux:Dependency="router"/>
+	<JavaScript File="logoutPage.js" />	
+	<ImageFill File="Assets/Logout.png" WrapMode="ClampToEdge"/>
+	<Image File="Assets/Logout car.png" Height="370" Alignment="TopLeft" ux:Name="handle"/>
+	<WhileTrue Value="{logout}">
+		<Move Target="handle" Y="-500" Duration="3" Easing="BackOut" />
+		<Move Target="handle" Y="-500" Delay="3" Duration="3" Easing="BackOut" />
+	</WhileTrue>
+</Page>

@@ -1,0 +1,91 @@
+
+<Page ux:Class="signupPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="signupPage.js" />
+	<Rectangle Layer="Background">
+		<ImageFill File="Assets/signup_bg.png" WrapMode="ClampToEdge" />
+	</Rectangle>
+	<Grid RowCount="20" Padding="20,25,20,0">
+		<Image Row="0" File="Assets/back_icon.png" Height="18" Alignment="Left" Clicked="{GoBack}"/>
+		<BoldText Row="0" Value="SIGN UP" Alignment="Center" FontSize="20"  Color="#F4CF41"/>
+		<Image Margin="35" Row="2" File="Assets/camera_icon.png" Alignment="Center" Height="95" Opacity="0.9"/>
+
+		<!--signup-->
+		<Grid ux:Name="signup" Padding="30,20,30,0" Row="9" RowCount="5" Columns="auto,1*" Height="400" Margin="0,45,0,0">
+
+			<Image Row="0" Column="0" File="Assets/id_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<TextInput Value="{id}" Alignment="Center" Row="0" Column="1" PlaceholderText="ID" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
+			<Image Row="0" Column="1" ux:Name="id_err" File="Assets/err.png" Height="18" Alignment="Right" Margin="0,0,20,0" />
+			<!--line-->
+			<Rectangle Row="0" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+			<Image Row="1" Column="0" File="Assets/pwd_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<TextInput Value="{pwd}"  Alignment="Center" Row="1" Column="1" PlaceholderText="Password" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" IsPassword="true" />
+			<Rectangle Row="1" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+			<Image Row="2" Column="0" File="Assets/user_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<TextInput Value="{name}"  Alignment="Center" Row="2" Column="1" PlaceholderText="Username" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
+			<Rectangle Row="2" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+			<Image Row="3" Column="0" File="Assets/phone_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<TextInput Row="3" Column="1" Value="{phone}"  Alignment="Center" PlaceholderText="Phone number" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
+			<Rectangle Row="3" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+			<Image Row="4" Column="0" File="Assets/email_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<TextInput Row="4" Column="1" Value="{email}" Alignment="Center" PlaceholderText="E-Mail" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
+			<Rectangle Row="4" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+			<KrBaseText Value="개인정보 수집 및 이용, 메일 수신에 모두 동의합니다" Row="5" Column="0"  ColumnSpan="2" Alignment="Center" FontSize="11" Height="10" Color="#FFF"/>
+
+
+
+		</Grid>
+
+		<!--car-->
+		<Rectangle Row="16"  Padding="30,40,30,0" ux:Class="signup_car" PrimaryColor="#F4CF41" SecondaryColor="#4398D4" FalseColor="#C84443">
+			<float4 ux:Property="PrimaryColor" />
+			<float4 ux:Property="SecondaryColor" />
+			<float4 ux:Property="FalseColor" />
+
+			<bool ux:Property="IsActive" />
+
+			<!--car 움직이기-->
+			<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+			<SwipingAnimation Source="swipe">
+				<Move Target="handle" X="185" />
+				<Change bar.Visibility="Hidden" />
+				<Change bar2.Visibility="Visible" />
+				<Change bar2.Color="White"/>
+
+
+				<WhileTrue Value="{formOK}">
+					<Change handle.Color="{ReadProperty SecondaryColor}" />
+					<Change signupsuc.Visibility="Visible" />
+				</WhileTrue>
+
+				<WhileFalse Value="{formOK}">
+					<Change handle.Color="{ReadProperty FalseColor}"/>
+					<Change signupfail.Visibility="Visible" />
+				</WhileFalse>
+			</SwipingAnimation>
+
+			<Clicked>
+				<ToggleSwipeActive Target="swipe" />
+			</Clicked>
+
+			<Grid Columns="1*,auto"> 
+				<Image Column="0" File="Assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}"   Clicked="{formCheck}" X="0"/>
+				<Image Column="1" ux:Name="bar" File="Assets/signup.png" Alignment="Right" Height="58" Clicked="{formCheck}"/>
+				<Image Column="1" ux:Name="bar2" File="Assets/bar.png" Alignment="Right" Height="58" Color="#F4CF41"/>
+				<Image Column="0" ux:Name="signupsuc" File="Assets/signup_suc.png" Alignment="Center" Height="10" Visibility="Hidden"/>
+				<Image Column="0" ux:Name="signupfail" File="Assets/signup_fail.png" Alignment="Center" Height="10"  Visibility="Hidden"/>
+
+
+			</Grid>
+		</Rectangle>
+		<signup_car ux:Name= "toggle" />
+		<WhileFalse Value="{idcheck}">
+			<Change id_err.Color="#C9414E"/></WhileFalse>
+			<Text Value="{data}"/>
+		</Grid>
+	</Page>

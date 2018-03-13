@@ -1,0 +1,33 @@
+<App>
+
+	<Router ux:Name="router" />
+	<Navigator DefaultPath="welcomePage">
+		<welcomePage ux:Template="welcomePage" router="router" />
+
+		<lookaroundPage ux:Template="lookaroundPage" router="router" />
+		<loginPage ux:Template="loginPage" router="router" />
+		<signupPage ux:Template="signupPage" router="router" />
+		<helpidPage ux:Template="helpidPage" router="router" />
+		<helpidRPage ux:Template="helpidRPage" router="router" />
+		<helppwdPage ux:Template="helppwdPage" router="router" />
+		<helppwdRPage ux:Template="helppwdRPage" router="router" />
+		<main ux:Template="main" router="router" />
+		<accountPage ux:Template="accountPage" router="router" />
+		<payPage ux:Template="payPage" router="router" />
+		<paycodePage ux:Template="paycodePage" router="router" />
+		<ticketPage ux:Template="ticketPage" router="router" />
+		<modificationPage ux:Template="modificationPage" router="router" />
+		<questionPage ux:Template="questionPage" router="router" />
+		<mycarPage ux:Template="mycarPage" router="router" />
+		<mycarPlusPage ux:Template="mycarPlusPage" router="router" />
+		<logoutPage ux:Template="logoutPage" router="router" />
+		<favoritePage ux:Template="favoritePage" router="router" />
+		<manualPage ux:Template="manualPage" router="router" />
+		<deletMycarPage ux:Template="deletMycarPage" router="router" />
+		<delticketPage ux:Template="delticketPage" router="router" />
+		<reservationPage ux:Template="reservationPage" router="router" />
+		<parkinginfoPage ux:Template="parkinginfoPage" router="router" />
+		<reservationPageTwo ux:Template="reservationPageTwo" router="router" />
+	<buyPage ux:Template="buyPage" router="router" />
+	</Navigator>
+</App>

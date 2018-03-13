@@ -1,0 +1,66 @@
+<Page ux:Class="ticketPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	<JavaScript File="ticketPage.js"/>
+	<DockPanel>
+		<Panel Dock="Top" Color="#25272F" Height="8%">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="TICKET" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0"/>
+		</Panel>
+		<ScrollView>
+
+
+			<StackPanel>
+				<Image File="assets/ticket.png" Height="13" Alignment="Right" Margin="0,20,25,10"/>
+				<!--사용 전 티켓-->
+				<Each Items="{ticketData}">
+					<StackPanel Margin="20,10,20,10">
+						<Image File="assets/ticketlist.png">
+							<Image File="assets/mycarDelete.png" Alignment="TopRight" Height="10" Margin="0,15,15,0" Clicked="{delticketPage}"/>
+							<StackPanel>
+
+								<Grid Columns="auto,1*">
+									<KrBoldText Value="{parkinglot}" Margin="17,15,0,0"/>
+									<KrBaseText Value="({parkinglot_loc})" Alignment="Left" Margin="5,16,0,0" FontSize="12"/>
+								</Grid>
+								<KrBaseText Value="{date}" Margin="17,8,0,0" FontSize="10"/>
+								<Grid Columns="auto,1*"> 
+									<KrBaseText Value="{s_time} ~ {e_time}" Margin="17,8,0,0" FontSize="10" Column="0"/>
+									<KrBaseText Value="{mycar}" Margin="0,8,17,0" FontSize="10" Column="1" Alignment="Right"/>
+								</Grid>
+								<Grid Columns="auto,1*" Margin="17,24,17,0"> 
+									<KrBoldText Value="{area} {location}" Column="0"/>
+									<NumBoldText Value="{fee}" Column="1" Alignment="Right"/>
+								</Grid>
+							</StackPanel>
+						</Image>
+					</StackPanel>
+				</Each>
+				<!--사용 티켓-->
+				<Each Items="{UsedticketData}">
+					<StackPanel Margin="20,10,20,10">
+						<Image File="assets/ticketlist2.png">
+									<Image File="assets/mycarDelete.png" Alignment="TopRight" Height="10" Margin="0,15,15,0" Clicked="{delticketPage}"/>
+							<StackPanel>
+								<Grid Columns="auto,1*">
+									<KrBoldText Value="{parkinglot}" Margin="17,15,0,0"/>
+									<KrBaseText Value="({parkinglot_loc})" Alignment="Left" Margin="5,16,0,0" FontSize="12"/>
+								</Grid>
+								<KrBaseText Value="{date}" Margin="17,8,0,0" FontSize="10"/>
+								<Grid Columns="auto,1*"> 
+									<KrBaseText Value="{s_time} ~ {e_time}" Margin="17,8,0,0" FontSize="10" Column="0"/>
+									<KrBaseText Value="{mycar}" Margin="0,8,17,0" FontSize="10" Column="1" Alignment="Right"/>
+								</Grid>
+								<Grid Columns="auto,1*" Margin="17,24,17,0"> 
+									<KrBoldText Value="{area} {location}" Column="0"/>
+									<NumBoldText Value="{fee}" Column="1" Alignment="Right"/>
+								</Grid>
+							</StackPanel>
+						</Image>
+					</StackPanel>
+				</Each>
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</Page>

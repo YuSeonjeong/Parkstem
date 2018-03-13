@@ -1,0 +1,169 @@
+<Panel ux:Class="calendarPanel">
+	<string ux:Property="Date" />
+
+	<!-- 달력 패널 -->
+	<JavaScript>
+	var Observable = require('FuseJS/Observable');
+
+		// 달력에 표시될 날짜들
+		var days = Observable();
+		// 1일 전의 빈칸
+		var preDays = Observable();
+		// 마지막날 이후의 빈칸
+		var aftDays = Observable();
+
+		var week = ["일", "월", "화", "수", "목", "금", "토"];
+
+		var d = new Date();
+
+		// 오늘 날짜를 변수에 저장
+		var year = Observable(d.getFullYear()); //연도
+		var month = Observable(d.getMonth()+1); //달
+		var date = d.getDate(); //날짜
+		var lastDate = (new Date(year.value, month.value, 0)).getDate(); //이달의 마지막 날짜
+		var day = new Date("'" + year.value + '-' + month.value + "-1'").getDay(); //이달의 첫째날 요일
+
+		makeDays();
+		// 달력을 생성하는 함수
+		function makeDays() {
+			// 1일의 요일의 앞부분은 빈칸으로 채움
+			for (var i=0 ; i<day ; i++) {
+				preDays.add({color: '#292930', date: '', fullDate: ''});
+			}
+			for (var i=0 ; i<lastDate ; i++) {
+				var tempDate = new Date(year.value, month.value-1, i+1);
+				// 오늘은 주황색으로 표시
+				if ( i == date-1 && year.value == d.getFullYear() && month.value == d.getMonth()+1) {
+					days.add({color: '#292930', date: i+1, fullDate: year.value+'-'+month.value+"-"+(i+1)});
+				} else {
+					days.add({color: '#292930', date: i+1, fullDate: year.value+'-'+month.value+"-"+(i+1)});
+				}
+			}
+			// 마지막날의 뒷부분은 빈칸으로 채움
+			if (35-lastDate-day < 0) {
+				for (var i=0 ; i<(42-lastDate-day) ; i++) {
+					aftDays.add({color: '#292930', date: '', fullDate: ''});
+				}
+			} else {
+				for (var i=0 ; i<(35-lastDate-day) ; i++) {
+					aftDays.add({color: '#292930', date: '', fullDate: ''});
+				}
+			}
+		}
+
+		// 달력을 삭제하는 함수
+		function clearDays() {
+			preDays.clear();
+			days.clear();
+			aftDays.clear();
+		}
+
+		// 다음달로 넘어감
+		function incMonth() {
+			if (month.value == 12) {
+				year.value++;
+				month.value = 0;
+			}
+			month.value++;
+			lastDate = (new Date(year.value, month.value, 0)).getDate();
+			day = new Date("'" + year.value + '-' + month.value + "-1'").getDay();
+			clearDays();
+			makeDays();
+		}
+
+		// 이전달로 넘어감
+		function decMonth() {
+			if (month.value == 1) {
+				year.value--;
+				month.value = 13;
+			}
+			month.value--;
+			lastDate = (new Date(year.value, month.value, 0)).getDate();
+			day = new Date("'" + year.value + '-' + month.value + "-1'").getDay();
+			clearDays();
+			makeDays();
+		}
+
+		function incYear() {
+			// todo..
+		}
+
+		function decYear() {
+			// todo..
+		}
+
+		module.exports = {
+			week, days, preDays, aftDays, year, month,
+			incMonth, decMonth, incYear, decYear
+		};
+		</JavaScript>
+
+		<Rectangle ux:Class="dateRec" CornerRadius="8" BoxSizing="FillAspect" Aspect="1" Width="35" Color="{color}">
+			<Stroke Offset="1" Width="1" Color="#F2C851" />
+			<SolidColor Color="#292930" />
+			<Selectable Value="{fullDate}" />
+
+			<Text Value="{date}" Color="#e6e7e8" Alignment="Center" />
+
+			<WhileSelected>
+				<Change this.Color="#F2C851" />
+			</WhileSelected>
+
+			<Tapped>
+				<ToggleSelection />
+			</Tapped>
+		</Rectangle>
+
+
+		<Rectangle ux:Class="lastRec" CornerRadius="8" BoxSizing="FillAspect" Aspect="1" Width="35" Color="#767072">
+
+			<Text Value="{date}" Color="#292930" Alignment="Center" />
+		</Rectangle>
+
+		<!--빈 날짜-->
+		<Rectangle ux:Class="blkRec" CornerRadius="8"  BoxSizing="FillAspect" Aspect="1" Width="35" Color="#292930" />
+
+
+		<Rectangle ux:Class="dayRec" CornerRadius="8" BoxSizing="FillAspect" Aspect="1" Width="35" Color="#e6e7e8">
+			<KrBaseText Value="{}" Color="#292930" Alignment="Center" />
+		</Rectangle>
+
+		<!--년도.달 표시-->
+		<StackPanel ItemSpacing="5" Width="280" Height="310" Margin="0,15,0,0">
+			<Grid Columns="1*, 2*, 1*" >
+				<NumBoldText Value="<" Alignment="CenterRight" Color="#e6e7e8" >
+					<Clicked>
+						<Callback Handler="{decMonth}" />
+					</Clicked>
+				</NumBoldText>
+
+				<NumBoldText Value="{year}.{month}" Alignment="Center"  Color="#e6e7e8"  />
+
+				<NumBoldText Value=">" Alignment="CenterLeft"  Color="#e6e7e8"  >
+					<Clicked>
+						<Callback Handler="{incMonth}" />
+					</Clicked>
+				</NumBoldText>
+			</Grid>
+
+			<Grid ColumnCount="7" Alignment="Center" CellSpacing="4">
+				<Each Items="{week}">
+					<dayRec />
+				</Each>
+			</Grid>
+
+			<Grid ColumnCount="7" Alignment="Center" CellSpacing="4">
+				<Each Items="{preDays}">
+					<blkRec />
+				</Each>
+
+				<Selection ux:Name="daySelection" MaxCount="1" MinCount="1" Value="{Property Date}" />
+				<Each Items="{days}">
+					<dateRec />
+				</Each>
+				<Each Items="{aftDays}">
+					<blkRec />
+				</Each>
+			</Grid>
+		</StackPanel>
+	</Panel>

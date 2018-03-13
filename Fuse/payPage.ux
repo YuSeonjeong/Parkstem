@@ -1,0 +1,36 @@
+<Page ux:Class="payPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	<JavaScript File="payPage.js"/>
+	<DockPanel>
+		<Panel Dock="Top" Color="#25272F" Height="8%">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="PAY" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0"/>
+			<!-- 지도 -->
+			<Image File="assets/Plus_icon.png" Alignment="CenterRight" Height="35%" Margin="0,0,22,0" Clicked="{paycodePage}"/>
+		</Panel>
+		<Panel Dock="Top" Color="#25272F" Height="28%">
+			<Grid Columns="auto,auto" Alignment="Center" MaxWidth="80%" Height="25">
+				<NumBoldText Value="{pay}" Color="#F4CF41" FontSize="35" Column="0" />
+				<KrBoldText Value=" 원" Color="#F4CF41" FontSize="19" Column="1" Alignment="Bottom" Margin="0,9,0,0" />
+			</Grid>
+		</Panel>
+		<ScrollView>
+			<StackPanel Background="White" Margin="15,10,15,0">
+				<Each Items="{paydata}">
+						<StackPanel>
+							<Panel Margin="0,3">
+							<Grid Row="3">
+								<KrBoldText FontSize="15" Value="{info}" Row="0" Margin="0,0,0,20"/>
+								<KrBaseText FontSize="11" Margin="0,5,0,0" Value="{date}" Row="1" />
+								<Rectangle Height="0.5" Color="#555"/>
+							</Grid>
+							<NumBoldText FontSize="16" Value="{fee}" Alignment="CenterRight" Height="30"/>
+						</Panel>
+						</StackPanel>
+				</Each> 
+			</StackPanel>
+		</ScrollView>
+	</DockPanel>
+</Page>

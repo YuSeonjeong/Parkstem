@@ -1,0 +1,82 @@
+
+<Page ux:Class="welcomePage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="welcomePage.js" />
+	<Panel ux:Name="back">
+		<Image File="Assets/1_Splash Screen.png"/>
+		<WhileTrue Value="{FadeOut}">
+			<Change Target="back.Opacity" Value="0" Duration="1" DelayBack="1" />
+			<Change back.Visibility="Hidden" Duration="3" />
+
+		</WhileTrue>
+	</Panel>
+	<Panel ux:Name="welcomePage">
+		<Rectangle Layer="Background">
+			<ImageFill File="Assets/2_Welcome.png" WrapMode="ClampToEdge" />
+		</Rectangle>
+		<Grid Padding="50,40,50,13" RowCount="20">
+
+		
+			<Rectangle Row="12" ux:Class="MyToggle" PrimaryColor="White" SecondaryColor="#4398D4">
+				<float4 ux:Property="PrimaryColor" />
+				<float4 ux:Property="SecondaryColor" />
+				<bool ux:Property="IsActive" />
+
+				<!--car 움직이기-->
+				<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+				<SwipingAnimation Source="swipe">
+					<Move Target="handle" X="185" />
+					<Change handle.Color="{ReadProperty SecondaryColor}" />
+				
+					<Change bar2.Visibility="Hidden" />
+				</SwipingAnimation>
+
+				<Clicked>
+					<ToggleSwipeActive Target="swipe" />
+					<Callback Handler="{GoMain}" Delay="1"/>
+				</Clicked>
+
+				<Image File="Assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}" />
+				<Image ux:Name="bar" File="Assets/bar.png" Alignment="Right"  Height="58" />
+				<Image ux:Name="bar2" File="Assets/look_icon.png" Alignment="Right"  Height="58" />
+			
+
+
+			</Rectangle>
+
+			<Rectangle Row="15" ux:Class="MyToggle1" PrimaryColor="#F4CF41" SecondaryColor="#4398D4">
+				<float4 ux:Property="PrimaryColor" />
+				<float4 ux:Property="SecondaryColor" />
+				<bool ux:Property="IsActive" />
+
+				<!--car 움직이기-->
+				<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+				<SwipingAnimation Source="swipe">
+					<Move Target="handle" X="185" />
+					<Change handle.Color="{ReadProperty SecondaryColor}" />
+					<Change bar.Visibility="Hidden" />
+					<Change bar2.Visibility="Visible" />
+				</SwipingAnimation>
+
+				<Clicked>
+					<ToggleSwipeActive Target="swipe" />
+					<Callback Handler="{GoLogin}" Delay="1" />
+				</Clicked>
+
+				<Image File="Assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}" />
+				<Image ux:Name="bar" File="Assets/login.png" Alignment="Right"  Height="58" />
+				<Image ux:Name="bar2" File="Assets/bar.png" Alignment="Right" Height="58" Visibility="Hidden"/>
+
+
+			</Rectangle>
+			<MyToggle ux:Name= "toggle" />
+
+			<MyToggle1 ux:Name= "toggle2" />
+
+			<Rectangle Row="17" Padding="0,20,0,0">
+				<Image File="Assets/signupicon.png" Height="10" Clicked="{GoSignUp}"/>
+			</Rectangle>
+
+
+		</Grid></Panel>
+	</Page>

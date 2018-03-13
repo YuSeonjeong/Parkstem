@@ -1,0 +1,92 @@
+<Page ux:Class="reservationPage" >
+	<Router ux:Dependency="router" />
+	<JavaScript File="reservationPage.js" />
+  <JavaScript File="main.js"/>
+  <DockPanel>
+    <Panel Dock="Top" Color="#25272F" Height="8%">
+     <!-- 상단 하늘색 탭 -->
+     <BoldText Value="RESERVATION" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+     <Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{parkinginfoPage}" Height="30%" Margin="22,0,0,0"/>
+   </Panel>
+
+
+   <!--하단 바(위에 정의된 이미지가 위에 위치함)-->
+   <Image File="assets/next.png" Alignment="BottomCenter"  Margin="20,0,20,10" Clicked="{reservationPageTwo}"/> 
+
+   <ScrollView Padding="20,30,20,20"> 
+     <StackPanel>
+      <!--이름,주소-->
+      <Grid Columns="1*, auto,auto,auto" >
+        <StackPanel Column="0" Padding="0,6,0,0">
+          <KrBoldText Value="건양점" Column="0" FontSize="15" Color="#25272F"/>
+          <KrBaseText Value="충남 논산 대학로 123" Column="0" Row="1" FontSize="11"  Color="#25272F" Margin="0,3,0,0"/>
+        </StackPanel>
+
+        <Image File="assets/locate_2.png" Height="45" Column="1"  Margin="0,0,5,0" />
+        <Image File="assets/call_2.png"  Height="45" Column="2"  Margin="0,0,5,0"/>
+        <Image ux:Name="fav2" File="assets/favorite.png"  Height="45" Column="3" />
+  <!--        <Clicked>
+          <Change fav.Color="Black" />
+          <Callback Handler="{favCliked}" />
+        </Clicked> -->
+
+      </Grid>
+
+      <Rectangle Margin="0,15,0,15" Height="1" Opacity="0.8"  Color="#292930"/>
+
+      <!--운영시간-->
+      <KrBoldText Value="예약일" FontSize="15" Color="#292930"  Padding="0,0,0,5"/>
+      <Grid Columns="1*,auto" Margin="0,0,0,10">
+       <Image File="assets/calendarbox.png" Width="270" Alignment="Left" Margin="0,5,0,0">
+        <NumBoldText Value="{date}" Alignment="Center" FontSize="18" Color="#292930"/>
+      </Image>
+      <Image File="assets/calendar_icon.png" Height="53" Alignment="Right"/>
+    </Grid>
+    <JavaScript>
+    var Observable = require('FuseJS/Observable');
+
+    var today = new Date();
+    var date = Observable();
+    var starttime = Observable();
+    var endtime = Observable();
+
+    starttime.add(today.getHours() + ':' + today.getMinutes());
+    endtime.add((today.getHours()+1) + ':' + today.getMinutes());
+    // 오늘 날짜와 내일 날짜를 추가하는 부분입니다. '2017-3-1'과 같은 형태로 직접 넣어도 됩니다.
+    date.add(today.getFullYear() +'-'+ (today.getMonth()+1) +'-'+ today.getDate());
+
+    module.exports = { date,starttime:starttime,endtime:endtime };
+    </JavaScript>
+
+    <ClientPanel ux:Name="calendar_box" Alignment="Bottom" >
+      <StackPanel >
+        <StackPanel Color="#292930">
+          <calendarPanel Date="{date}"/>
+        </StackPanel>
+      </StackPanel>
+    </ClientPanel> 
+    <Rectangle Margin="0,15,0,15" Height="1" Opacity="0.8"  Color="#292930"/>
+
+    <!--운영시간-->
+    <KrBoldText Value="예약시간" FontSize="15" Color="#292930"  Padding="0,0,0,12"/>
+    <Image File="assets/timebox.png" Width="340">
+     <StackPanel Orientation="Horizontal" Margin="40,10" Alignment="Center">
+      <TextInput Value="{starttime}" PlaceholderText="10" PlaceholderColor="#292930" FontSize="20" Alignment="Center" Font="NumBoldFont" Margin="0,0,10,0" TextColor="#292930"/><BaseText Value="~" Color="#292930" Alignment="Center" FontSize="20" Font="NumBoldFont" Margin="0,0,10,0"/>
+      <TextInput Value="{endtime}" PlaceholderText="10" PlaceholderColor="#292930" FontSize="20" Alignment="Center" Font="NumBoldFont" Margin="0,0,10,0" TextColor="#292930"/>
+      <!-- <BaseText Value="~" Color="#292930" Alignment="Center" FontSize="20" Font="NumBoldFont" Margin="0,0,10,0"/>
+      <TextInput Value="{hour2}" PlaceholderText="12" PlaceholderColor="#292930" FontSize="20" Alignment="Center" Font="NumBoldFont" Margin="0,0,10,0" TextColor="#292930"/>
+      <BaseText Value=":" Color="#292930" Alignment="Center" FontSize="20" Font="NumBoldFont" Margin="0,0,10,0"/>
+      <TextInput Value="{min2}" PlaceholderText="30" PlaceholderColor="#292930" FontSize="20" Alignment="Center" Font="NumBoldFont" Margin="0,0,10,0" TextColor="#292930"/> -->
+    </StackPanel>
+  </Image>
+  <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+    <Image File="assets/1day.png" Width="63" />
+    <Image Color="Black"  File="assets/1hour.png" Width="63" />
+    <Image File="assets/30min.png" Width="63" />
+    <Image File="assets/10min.png" Width="63" />
+    <Image File="assets/reset_icon.png" Width="63" Margin="20,0,0,0"/>
+  </StackPanel>
+</StackPanel>
+</ScrollView>
+</DockPanel>
+</Page>

@@ -1,0 +1,113 @@
+<Page ux:Class="questionPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js" />
+	<JavaScript File="questionPage.js" />
+	<DockPanel Color="#25272F">
+		<Panel Dock="Top" Color="#25272F" Height="8%">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="QUESTION" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<Android.StatusBarConfig Color="#0000" />
+	<iOS.StatusBarConfig Style="Light" />
+	
+		
+		
+		<!-- MaxWidth="500" limits the size of the content on larger screens (i.e. tablets) -->
+		<Panel MaxWidth="500" Padding="0,50,0,0">
+			<LayoutAnimation>
+				<Move RelativeTo="PositionChange" Y="1" Duration="0.2" Easing="QuadraticInOut" />
+				<StackPanel Dock="Top">
+			<StatusBarBackground />
+		</StackPanel>
+			</LayoutAnimation>
+			<StackPanel Margin="25,0" Alignment="Top">
+				<WhileKeyboardVisible>
+					<Change titleContainer.Opacity="0" Duration="0.2" Easing="CubicInOut" />
+					<Move Y="-1" RelativeTo="Size" RelativeNode="titleContainer" Duration="0.2" Easing="CubicInOut" />
+				</WhileKeyboardVisible>
+				
+				<StackPanel ux:Name="titleContainer" ClipToBounds="true" Padding="0,20">
+					<KrBoldText Alignment="Center" FontSize="22" Color="#E6E7E8">
+						궁금한 것을 물어보세요
+					</KrBoldText>
+					
+					<KrBaseText Alignment="Center" FontSize="10" Color="#E6E7E8" Margin="0,20,0,0">
+						당신의 이메일로 답변을 보내드리겠습니다!
+					</KrBaseText>
+				</StackPanel>
+				
+				<StackPanel Margin="0,20">
+					<TextView ux:Name="messageTextView" CaretColor="#0004" TextColor="#000a" Height="130" TextWrapping="Wrap" Margin="20,20" AutoCapitalizationHint="Sentences" AutoCorrectHint="Enabled">
+						<WhileNotFocused>
+							<WhileString Value="{ReadProperty messageTextView.Value}" MaxLength="0">
+								<KrBaseText ux:Name="messagePlaceholder" Color="#282830" Alignment="Left" FontSize="12">
+									질문을 입력해주세요.
+									<AddingAnimation>
+										<Change messagePlaceholder.Opacity="0" Duration="0.2" />
+									</AddingAnimation>
+									<RemovingAnimation>
+										<Change messagePlaceholder.Opacity="0" Duration="0.2" />
+									</RemovingAnimation>
+									<TextInput Value="{question}"/>
+								</KrBaseText>
+							</WhileString>
+						</WhileNotFocused>
+					</TextView>
+					<Panel>
+						<Rectangle Layer="Background" CornerRadius="0,0,8,8" Color="White" />
+						<Rectangle   Color="#292930" Height="1" Width="600" Alignment="Top"/>
+						<StackPanel Orientation="Horizontal" Alignment="Center" ItemSpacing="7" Margin="0,13">
+							
+							<Image File="assets/minicamera.png" Height="15" Margin="0,5,0,5"/>
+							<BaseText FontSize="12" TextColor="#292930" Margin="0,5,0,5">Add a picture</BaseText>
+						</StackPanel>
+					</Panel>
+					
+					<Rectangle Layer="Background" Color="#fff" CornerRadius="8">
+						<Shadow Distance="2" Size="3" Color="#0005" />
+					</Rectangle>
+				</StackPanel>
+
+			<Rectangle Row="16"  Padding="25,90,25,0" ux:Class="car" PrimaryColor="#F4CF41" SecondaryColor="#4398D4" FalseColor="#C84443">
+				<float4 ux:Property="PrimaryColor" />
+				<float4 ux:Property="SecondaryColor" />
+				<float4 ux:Property="FalseColor" />
+
+				<bool ux:Property="IsActive" />
+
+				<!--car 움직이기-->
+				<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+				<SwipingAnimation Source="swipe">
+					<Move Target="handle" X="185" />
+					<Change bar.Visibility="Hidden" />
+					<Change bar2.Visibility="Visible" />
+					<Change bar2.Color="White"/>
+
+
+					<WhileTrue Value="{questionAdd}">
+						<Change handle.Color="{ReadProperty SecondaryColor}" />
+					</WhileTrue>
+
+					<WhileFalse Value="{questionAdd}">
+						<Change handle.Color="{ReadProperty FalseColor}"/>
+						<Change forgotfail.Visibility="Visible" />
+					</WhileFalse>
+				</SwipingAnimation>
+
+				<Clicked>
+					<ToggleSwipeActive Target="swipe" />
+				</Clicked>
+
+				<Grid Columns="1*,auto"> 
+					<Image Column="0" File="assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}"   Clicked="{questionAdd}" X="0"/>
+					<Image Column="1" ux:Name="bar" File="assets/ok.png" Alignment="Right" Height="58" Clicked="{questionAdd}"/>
+					<Image Column="1" ux:Name="bar2" File="assets/bar.png" Alignment="Right" Height="58" Color="#F4CF41"/>
+					<Image Column="0" ux:Name="forgotfail" File="assets/forgot_fail.png" Alignment="Center" Height="10"  Visibility="Hidden"/>
+				</Grid>
+			</Rectangle>
+			<car ux:Name= "toggle" />
+			</StackPanel>
+		</Panel>
+	</DockPanel>
+</Page>

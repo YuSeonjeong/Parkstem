@@ -1,0 +1,114 @@
+<PageControl ux:Class="manualPage" Transition="None" ClipToBounds="false">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	
+	<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 01.png" WrapMode="ClampToEdge" />
+	</Page>
+
+	<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 02.png" WrapMode="ClampToEdge" />
+	</Page>
+
+	<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 03.png" WrapMode="ClampToEdge" />
+	</Page>
+
+	<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 04.png" WrapMode="ClampToEdge" />
+	</Page>
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 05.png" WrapMode="ClampToEdge" />
+	</Page>
+
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 06.png" WrapMode="ClampToEdge" />
+	</Page>
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 07.png" WrapMode="ClampToEdge" />
+	</Page>
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 08.png" WrapMode="ClampToEdge" />
+	</Page>
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 09.png" WrapMode="ClampToEdge" />
+	</Page>
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 10.png" WrapMode="ClampToEdge" />
+	</Page>
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 11.png" WrapMode="ClampToEdge" />
+	</Page>
+
+		<Page>
+		<Panel Dock="Top" Height="8%" Alignment="Top">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MANUAL" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41" />
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0" />
+		</Panel>
+		<ImageFill File="Assets/Manual 12.png" WrapMode="ClampToEdge" />
+	</Page>
+</PageControl>
+

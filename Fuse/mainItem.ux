@@ -1,0 +1,40 @@
+<Panel ux:Class="mainItem">
+	<JavaScript File="main.js"/>
+	<string ux:Property="Label"/>
+	<Selectable Value="{ReadProperty this.Label}"/>
+
+	<WhileSelected>
+		<Change clickReservation.Color="#F2C851" />
+		<!--<Callback Handler="{listClicked}" />-->
+	</WhileSelected>
+	<Tapped>
+		<ToggleSelection />
+	</Tapped>
+
+	<Image ux:Name="clickReservation" File="assets/reservation_nonSelect.png" Margin="15,5">
+
+		<StackPanel Orientation="Horizontal" Margin="0,5">
+			<KrBoldText Value="{name}" Margin="15,17,0,17" Alignment="Center"/>
+			<Grid Rows="auto,1*" Margin="10,7,0,7" Height="37" Width="110" >
+				<KrBaseText Value="시간당 요금(원)" FontSize="10" Row="0"  Alignment="Center"/>
+				<NumBoldText Value="{fee_h}" Row="1" FontSize="23" Margin="0,5" Alignment="Center"/>
+			</Grid>
+			<Grid Rows="auto,1*" Margin="5,7,0,7" Height="37" Width="40" >
+				<KrBaseText Value="일반" FontSize="10" Row="0"  Alignment="Center"/>
+				<NumBoldText Value="{space_a}" Row="1" FontSize="23" Margin="0,5" Alignment="Center"/>
+			</Grid>
+			<Grid Rows="auto,1*" Margin="17,7,0,7" Height="37" Width="40" >
+				<KrBaseText Value="장애인" FontSize="10" Row="0"  Alignment="Center"/>
+				<NumBoldText Value="{space_b}" Row="1" FontSize="23" Margin="0,5" Alignment="Center"/>
+			</Grid>
+			<Grid Rows="auto,1*" Margin="16,7,0,7" Height="37" Width="40" >
+				<KrBaseText Value="여성" FontSize="10" Row="0"  Alignment="Center"/>
+				<NumBoldText Value="{space_c}" Row="1" FontSize="23" Margin="0,5" Alignment="Center"/>
+			</Grid>
+
+
+
+		</StackPanel>
+
+	</Image>
+</Panel>

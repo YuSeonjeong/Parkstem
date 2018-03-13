@@ -1,0 +1,21 @@
+{
+"RootNamespace":"",
+"Android": {
+"Geo": {
+"ApiKey": "AIzaSyCip_RVot1IoELEKx_2UVW0fzsfX-Pdoxw"    }
+},
+"Packages": [
+"Fuse.Maps",
+"Fuse",
+"FuseJS",
+"Fuse.BasicTheme",
+"Fuse.Controls.CameraView",
+"Fuse.ImageTools",
+],
+"Includes": [
+"*",
+"Modules/*.js:Bundle"
+
+]
+}
+

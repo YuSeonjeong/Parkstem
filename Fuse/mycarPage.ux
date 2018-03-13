@@ -1,0 +1,46 @@
+<Page ux:Class="mycarPage">
+   <Router ux:Dependency="router" />
+   <JavaScript File="main.js"/>
+   <JavaScript File="mycarPage.js"/>
+   <DockPanel>
+      <Panel Dock="Top" Color="#25272F" Height="8%">
+         <!-- 상단 하늘색 탭 -->
+         <BoldText Value="MY CAR" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+         <Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0"/>
+         <Image File="assets/Plus_icon.png" Alignment="CenterRight" Height="35%" Margin="0,0,22,0" Clicked="{mycarPlusPage}"/>
+      </Panel>
+      <ScrollView>
+         <StackPanel>
+            <Image File="assets/maincar.png" Height="13" Alignment="Right" Margin="0,20,25,10"/>
+
+            <!--메인카-->
+               <Each Items="{maincardata}">
+               <Grid ColumnCount="2" Margin="30,15,25,0" Columns="1*,auto">
+                  <Image File="assets/mycar2.png" Color="#25272F" Height="70" Alignment="Left" Column="0"/>
+                  <Image File="assets/mycarList.png" Height="82">
+                     <Image File="assets/mycarDelete.png" Alignment="TopRight" Height="10" Margin="0,15,15,0" Clicked="{deletMycarPage}"/>
+                     <StackPanel>
+                        <KrBaseText Value="{car_id}" FontSize="13" Margin="15,21,0,5" Color="#25272F" />
+                        <BoldText Value="{car_num}" FontSize="18" Margin="15,0,0,0" Color="#25272F"/>
+                     </StackPanel>
+                  </Image>
+               </Grid>
+            </Each>
+
+            <!--잡카-->
+            <Each Items="{cardata}">
+               <Grid ColumnCount="2" Margin="30,15,25,0" Columns="1*,auto">
+                  <Image File="assets/mycar2.png" Color="#25272F" Height="70" Alignment="Left" Column="0" />
+                  <Image File="assets/mycarList2.png" Height="82">
+                     <Image File="assets/mycarDelete.png" Alignment="TopRight" Height="10" Margin="0,15,15,0" Clicked="{deletMycarPage}"/>
+                     <StackPanel>
+                        <KrBaseText Value="{car_id}" FontSize="13" Margin="15,21,0,5" Color="#25272F"/>
+                        <BoldText Value="{car_num}" FontSize="18" Margin="15,0,0,0" Color="#25272F"/>
+                     </StackPanel>
+                  </Image>
+               </Grid>
+            </Each>
+         </StackPanel>
+      </ScrollView>
+   </DockPanel>
+</Page>

@@ -1,0 +1,91 @@
+
+<Page ux:Class="helpidPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="helpPage.js" />	
+	<Rectangle Layer="Background">
+		<ImageFill File="Assets/forgot_bg.png" WrapMode="ClampToEdge" />
+	</Rectangle>
+	
+	<Grid RowCount="20" Padding="20,25,20,0">
+		
+		<Image Row="0" File="Assets/back_icon.png" Height="18" Alignment="Left" Clicked="{GoBack}"/>
+		<BoldText Row="0" Value="FORGOT" Alignment="Center" FontSize="20" Color="#F4CF41"/>
+
+
+<!-- 		<Image Row="0" File="Assets/back_icon.png" Height="18" Alignment="Left" Clicked="{GoBack}"/>
+<Image Row="0" File="Assets/forgot_bar.png" Height="18" Alignment="Center"/> -->
+
+<Grid Row="2" Padding="46,0,46,0" Columns="3*,1*,3*">
+	<Image Column="0" File="Assets/forgot_id.png" Alignment="Center" Height="13"/>
+	<Rectangle  Column="0" Alignment="Bottom" Height="1" Color="#fff" Opacity="0.8" />
+
+	<Image Column="2" File="Assets/forgot_pwd.png" Alignment="Center" Height="13" Clicked="{GoPWD}"/>
+	<!-- <Rectangle Column="2" Alignment="Bottom" Height="1" Color="#fff" Opacity="0.8" /> -->
+</Grid>
+
+<Image Margin="0,35,0,0" Row="5" File="Assets/id_icon.png" Alignment="Center" Height="55"/>
+
+<!--signup-->
+<Grid ux:Name="signup" Padding="30,20,30,0" Row="9" RowCount="5" Columns="auto,1*" Height="400" Margin="0,45,0,0">
+
+	<Image Row="2" Column="0" File="Assets/user_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+	<TextInput Value="{name}"  Alignment="Center" Row="2" Column="1" PlaceholderText="Username" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
+	<Rectangle Row="2" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+	<Image Row="3" Column="0" File="Assets/phone_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+	<TextInput Row="3" Column="1" Value="{phone}"  Alignment="Center" PlaceholderText="Phone number" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
+	<Rectangle Row="3" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+	<Image Row="4" Column="0" File="Assets/email_icon.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+	<TextInput Row="4" Column="1" Value="{email}" Alignment="Center" PlaceholderText="E-Mail" PlaceholderColor="#fff" TextColor="#fff" CaretColor="#fff" />
+	<Rectangle Row="4" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#fff" Opacity="0.8" />
+
+	<KrBaseText Value="등록한 회원정보를 통해 아이디를 찾아드립니다" Row="5" Column="0" ColumnSpan="2"  Alignment="Center" FontSize="11" Height="10" Color="#FFF"/>
+
+
+
+</Grid>
+
+<!--car-->
+<Rectangle Row="16"  Padding="30,40,30,0" ux:Class="helpid_car" PrimaryColor="#F4CF41" SecondaryColor="#4398D4" FalseColor="#C84443">
+	<float4 ux:Property="PrimaryColor" />
+	<float4 ux:Property="SecondaryColor" />
+	<float4 ux:Property="FalseColor" />
+
+	<bool ux:Property="IsActive" />
+
+	<!--car 움직이기-->
+	<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+	<SwipingAnimation Source="swipe">
+		<Move Target="handle" X="185" />
+		<Change bar.Visibility="Hidden" />
+		<Change bar2.Visibility="Visible" />
+		<Change bar2.Color="White"/>
+
+
+		<WhileTrue Value="{idfindOK}">
+			<Change handle.Color="{ReadProperty SecondaryColor}" />
+		</WhileTrue>
+
+		<WhileFalse Value="{idfindOK}">
+			<Change handle.Color="{ReadProperty FalseColor}"/>
+			<Change forgotfail.Visibility="Visible" />
+		</WhileFalse>
+	</SwipingAnimation>
+
+	<Clicked>
+		<ToggleSwipeActive Target="swipe" />
+	</Clicked>
+
+	<Grid Columns="1*,auto"> 
+		<Image Column="0" File="Assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}"   Clicked="{findID}" X="0"/>
+		<Image Column="1" ux:Name="bar" File="Assets/ok.png" Alignment="Right" Height="58" Clicked="{findID}"/>
+		<Image Column="1" ux:Name="bar2" File="Assets/bar.png" Alignment="Right" Height="58" Color="#F4CF41"/>
+		<Image Column="0" ux:Name="forgotfail" File="Assets/fail.png" Alignment="Center" Height="10"  Visibility="Hidden"/>
+
+
+	</Grid>
+</Rectangle>
+<helpid_car ux:Name= "toggle" />
+</Grid>
+</Page>

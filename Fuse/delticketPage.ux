@@ -1,0 +1,66 @@
+<Page ux:Class="delticketPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	<JavaScript File="mycarPage.js"/>
+	<DockPanel Color="#25272F">
+		<Panel Dock="Top" Height="8%">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="MY CAR PLUSE" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{mycarPage}" Height="30%" Margin="22,0,0,0"/>
+		</Panel>
+
+		<StackPanel>
+			<Image File="assets/mycar.png" Height="100" Margin="0,50,0,70"/>
+
+			<Grid Row="1" Padding="40,0,40,30" RowCount="2" Columns="auto,1*" Height="150">
+				<KrBoldText Value="차종" FontSize="14" Row="0" Column="0" Color="#E6E7E8" Margin="30,0,0,0" Alignment="Left"  Height="15"/>
+				<TextInput Value="{addcarName}" PlaceholderText="차종을 입력해주세요" PlaceholderColor="#E6E7E8" Column="1" Row="0" TextColor="#E6E7E8" FontSize="12" Alignment="Center" Margin="0,5,0,0"/>
+				<Rectangle Row="0" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#E6E7E8" />
+
+				<KrBoldText Value="차량번호" FontSize="14" Row="1" Column="0" Color="#E6E7E8" Margin="20,0,0,0" Alignment="Left"  Height="15"/>
+				<TextInput Value="{addcarNum}" PlaceholderText="차량번호를 입력해주세요" PlaceholderColor="#E6E7E8" Column="1" Row="1" TextColor="#E6E7E8" FontSize="12" Alignment="Center" Margin="0,5,0,0"/>
+				<Rectangle Row="1" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#E6E7E8" />
+			</Grid>
+			
+
+			<Rectangle Row="16"  Padding="40,90,40,0" ux:Class="delticket_car" PrimaryColor="#F4CF41" SecondaryColor="#4398D4" FalseColor="#C84443">
+				<float4 ux:Property="PrimaryColor" />
+				<float4 ux:Property="SecondaryColor" />
+				<float4 ux:Property="FalseColor" />
+
+				<bool ux:Property="IsActive" />
+
+				<!--car 움직이기-->
+				<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+				<SwipingAnimation Source="swipe">
+					<Move Target="handle" X="205" />
+					<Change bar.Visibility="Hidden" />
+					<Change bar2.Visibility="Visible" />
+					<Change bar2.Color="White"/>
+
+
+					<WhileTrue Value="{addcarCheck}">
+						<Change handle.Color="{ReadProperty SecondaryColor}" />
+					</WhileTrue>
+
+					<WhileFalse Value="{addcarCheck}">
+						<Change handle.Color="{ReadProperty FalseColor}"/>
+						<Change forgotfail.Visibility="Visible" />
+					</WhileFalse>
+				</SwipingAnimation>
+
+				<Clicked>
+					<ToggleSwipeActive Target="swipe" />
+				</Clicked>
+
+				<Grid Columns="1*,auto"> 
+					<Image Column="0" File="assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}"   Clicked="{addcarOk}" X="0"/>
+					<Image Column="1" ux:Name="bar" File="assets/ok.png" Alignment="Right" Height="58" Clicked="{addcarOk}"/>
+					<Image Column="1" ux:Name="bar2" File="assets/bar.png" Alignment="Right" Height="58" Color="#F4CF41"/>
+					<Image Column="0" ux:Name="forgotfail" File="assets/forgot_fail.png" Alignment="Center" Height="10"  Visibility="Hidden"/>
+				</Grid>
+			</Rectangle>
+			<delticket_car ux:Name= "toggle" />
+		</StackPanel>
+	</DockPanel>
+</Page>

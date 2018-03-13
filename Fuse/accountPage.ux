@@ -1,0 +1,52 @@
+<Page ux:Class="accountPage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	<JavaScript File="accountPage.js"/>
+
+<DockPanel Background="#FFFFFF">
+	<Panel Dock="Top" Color="#25272F" Height="8%">
+		<!-- 상단 하늘색 탭 -->
+		<BoldText Value="ACCOUNT" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+		<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{main}" Height="30%" Margin="22,0,0,0"/>
+		<Image File="assets/err.png" Color="#F4CF41" Alignment="CenterRight" Clicked="{modificationPage}" Height="30%" Margin="0,0,22,0"/>
+	</Panel>
+
+	<Grid RowCount="20" Padding="20,45,20,0">
+
+		<Image Margin="35" Row="1" File="Assets/camera_icon2.png" Alignment="Center" Height="105" Opacity="0.9"/>
+		
+
+	<Grid Row="10" Padding="30,20,30,0" RowCount="5" Columns="auto,1*" Height="350">
+
+			<Image Row="0" Column="0" File="Assets/id_icon2.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<BaseText Value="{userId}" Row="0" Column="1" TextColor="#282830" Alignment="Center" />
+			<Rectangle Row="0" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#282830"  Opacity="0.8"/>
+
+
+			<Image Row="1" Column="0" File="Assets/pwd_icon2.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<BaseText Value="{userdata.pwd}" Row="1" Column="1" TextColor="#282830" Alignment="Center" FontSize="13"/>
+			<Rectangle Row="1" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#282830"  Opacity="0.8"/>
+
+			<Image Row="2" Column="0" File="Assets/name_icon2.png" Width="26" Margin="15,0,0,0" Alignment="Left"/>
+			<BaseText Value="{userdata.name}" Row="2" Column="1" TextColor="#282830" Alignment="Center" FontSize="13"/>
+			<Rectangle Row="2" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#282830"  Opacity="0.8"/>
+
+			<Image Row="3" Column="0" File="Assets/phone_icon2.png" Width="26" Margin="15,0,0,0" Alignment="Left"/>
+			<BaseText Value="{userdata.phone}" Row="3" Column="1" TextColor="#282830" Alignment="Center" FontSize="13"/>
+			<Rectangle Row="3" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#282830"  Opacity="0.8"/>
+
+
+			<Image Row="4" Column="0" File="Assets/email_icon2.png" Width="26" Margin="15,0,0,0" Alignment="Left" />
+			<BaseText Value="{userdata.email}" Row="4" Column="1" TextColor="#282830" Alignment="Center" FontSize="13" Color="#282830"/>
+			<Rectangle Row="4" Column="0" Alignment="Bottom" ColumnSpan="2" Height="1" Color="#282830"  Opacity="0.8"/>
+
+
+
+		</Grid>
+
+			<KrBaseText Row="17" Value="개인정보 수집 및 이용, 메일 수신에 모두 동의합니다."  Alignment="Center" FontSize="11" Color="#282830"/>
+
+
+	</Grid>
+</DockPanel>
+</Page>

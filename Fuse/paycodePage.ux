@@ -1,0 +1,62 @@
+<Page ux:Class="paycodePage">
+	<Router ux:Dependency="router" />
+	<JavaScript File="main.js"/>
+	<JavaScript File="paycodePage.js"/>
+
+	<float4 ux:Global="Highlight" ux:Value="#E6E7E8" />
+	<DockPanel Background="#25272F">
+		<Panel Dock="Top" Color="#25272F" Height="8%">
+			<!-- 상단 하늘색 탭 -->
+			<BoldText Value="PAY CODE" Alignment="Center" FontSize="17" Height="17" Color="#F4CF41"/>
+			<Image File="assets/back_icon.png" Alignment="CenterLeft" Clicked="{payPage}" Height="30%" Margin="22,0,0,0"/>
+		</Panel>
+		<StackPanel>
+			<ClientPanel>
+				<Paycode Code="{code}" Alignment="Top" Margin="16,110,16,70"/>
+			</ClientPanel>
+			<KrBaseText ux:Name="codeMessage" Value="충전코드를 입력해주세요" FontSize="13" Color="White" Alignment="Center" Visibility="Visible"/>
+
+			<Rectangle Padding="50,240,50,0" ux:Class="pay_car" PrimaryColor="#F4CF41" SecondaryColor="#4398D4" FalseColor="#C84443">
+				<float4 ux:Property="PrimaryColor" />
+				<float4 ux:Property="SecondaryColor" />
+				<float4 ux:Property="FalseColor" />
+
+				<bool ux:Property="IsActive" />
+
+				<!--car 움직이기-->
+				<SwipeGesture ux:Name="swipe" Direction="Right" Type="Active" IsActive="{Property IsActive}" />
+				<SwipingAnimation Source="swipe">
+					<Move Target="handle" X="185" />
+					<Change bar.Visibility="Hidden" />
+					<Change bar2.Visibility="Visible" />
+					<Change bar2.Color="White"/>
+
+
+					<WhileTrue Value="{payplus}">
+						<Change handle.Color="{ReadProperty SecondaryColor}" />
+					</WhileTrue>
+
+					<WhileFalse Value="{payplus}">
+						<Change handle.Color="{ReadProperty FalseColor}"/>
+						<Change fail.Visibility="Visible" />
+					</WhileFalse>
+				</SwipingAnimation>
+
+				<Clicked>
+					<ToggleSwipeActive Target="swipe" />
+				</Clicked>
+
+				<Grid Columns="1*,auto"> 
+					<Image Column="0" File="Assets/car_white.png" ux:Name="handle" Height="38" Alignment="Left" Color="{ReadProperty PrimaryColor}"   Clicked="{payplusOk}" X="0"/>
+					<Image Column="1" ux:Name="bar" File="Assets/ok.png" Alignment="Right" Height="58" Clicked="{payplusOk}"/>
+					<Image Column="1" ux:Name="bar2" File="Assets/bar.png" Alignment="Right" Height="58" Color="#F4CF41"/>
+					<Image Column="0" ux:Name="fail" File="Assets/fail.png" Alignment="Center" Height="10"  Visibility="Hidden"/>
+
+
+				</Grid>
+			</Rectangle>
+			<pay_car ux:Name= "toggle" />
+
+		</StackPanel>
+	</DockPanel>
+</Page>
